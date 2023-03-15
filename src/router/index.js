@@ -3,6 +3,7 @@ import HomeView from "../views/HomeView.vue";
 import AboutView from "../views/AboutView.vue";
 import ErrorPage from "../views/ErrorPage.vue";
 import RepoView from "../views/RepoView.vue";
+import RepoDetails from "../views/RepoDetails.vue";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -23,6 +24,15 @@ const router = createRouter({
       path: "/repos",
       name: "repo",
       component: RepoView,
+
+      children: [
+        {
+          path: "/repos/repo.name",
+          name: "repo-details",
+          component: () => import("../views/RepoDetails.vue"),
+        },
+      ],
+
 
     },
 

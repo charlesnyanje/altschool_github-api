@@ -1,4 +1,5 @@
 <script setup>
+import { RouterLink, RouterView } from "vue-router";
 import axios from "axios";
 import { ref } from "vue";
 //fetching github api
@@ -67,27 +68,24 @@ const searchRepos = async () => {
 </script>
 
 <template>
-
-
-
-  
-
   <div class="container">
-
     <div class="git__user">
       <h1>Search for a github user</h1>
       <input type="text" v-model="search" />
-      <button @click="searchRepos">Search</button>
+      <button class="search" @click="searchRepos">Search</button>
       <br />
-  
     </div>
     <div class="repos">
       <h1>My Repos</h1>
 
       <div class="repo" v-for="repo in currentRepos" :key="repo.id">
         <div class="repo__name">
-          
-          <a :href="repo.html_url" target="_blank">{{ repo.name }}</a>
+          <RouterLink :to="`/repos/${repo.name}`">{{ repo.name }}</RouterLink>
+
+          <RouterView />
+
+          <!--<a :href="repo.html_url" target="_blank">{{ repo.name }}</a>-->
+
           <p class="repo_desc">{{ repo.description }}</p>
         </div>
       </div>
@@ -111,8 +109,26 @@ const searchRepos = async () => {
 </template>
 
 <style>
-
-
+input {
+  width: 20rem;
+  height: 2rem;
+  border: none;
+  outline: none;
+  border-radius: 5px;
+  padding: 0.5rem;
+  margin-top: 1rem;
+  box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.1);
+}
+.search{
+  width: 5rem;
+  
+  outline: none;
+  border-radius: 5px;
+  padding: 0.5rem;
+  margin-top: 1rem;
+ 
+  cursor: pointer;
+}
 .container {
   display: flex;
   flex-direction: column;
@@ -132,8 +148,6 @@ const searchRepos = async () => {
   width: 100%;
   margin-top: 2rem;
 }
-
-
 
 .repo_desc {
   font-size: 0.8rem;
