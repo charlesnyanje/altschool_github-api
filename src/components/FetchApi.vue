@@ -92,7 +92,11 @@ const prev = () => {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin-top: 2rem;
+  margin: 3rem auto;
+  background-color: steelblue;
+  height: 60vh;
+  width: 50vw;
+
 }
 
 .repo_desc {

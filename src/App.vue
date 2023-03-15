@@ -5,19 +5,37 @@ import { RouterLink, RouterView } from "vue-router";
 <template>
   <header >
     <nav>
-      <RouterLink to="/">Home</RouterLink>
-      <RouterLink to="/about">About</RouterLink>
+      <RouterLink to="/" class="link">Home</RouterLink>
+      <RouterLink to="/about" class="link">About</RouterLink>
     </nav>
   </header>
 
   <RouterView />
 </template>
 
-<style scoped>
+<style>
+body{
+ background-color: aqua;
+
+}
 header {
   line-height: 1.5;
   max-height: 100vh;
+
 }
+
+.link{
+  color: black;
+  text-decoration: none;
+  font-size: 1.5rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1rem;
+  padding: 1rem;
+  transition: all 0.3s ease-in-out;
+}
+
+
 
 .logo {
   display: block;
