@@ -54,15 +54,39 @@ const prev = () => {
     );
   }
 };
+
+//searching a github user
+
+const search = ref("");
+const searchRepos = async () => {
+  const { data } = await axios.get(
+    `https://api.github.com/users/${search.value}/repos`
+  );
+  repos.value = data;
+};
 </script>
 
 <template>
+
+
+
+  
+
   <div class="container">
+
+    <div class="git__user">
+      <h1>Search for a github user</h1>
+      <input type="text" v-model="search" />
+      <button @click="searchRepos">Search</button>
+      <br />
+  
+    </div>
     <div class="repos">
       <h1>My Repos</h1>
 
       <div class="repo" v-for="repo in currentRepos" :key="repo.id">
         <div class="repo__name">
+          <img :src="repo.owner.avatar_url" alt="" />
           <a :href="repo.html_url" target="_blank">{{ repo.name }}</a>
           <p class="repo_desc">{{ repo.description }}</p>
         </div>
@@ -87,16 +111,26 @@ const prev = () => {
 </template>
 
 <style>
+
+
 .container {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   margin: 3rem auto;
-  background-color: steelblue;
+  background-color: rgb(241, 237, 237);
   height: 60vh;
   width: 50vw;
+}
 
+.git__user {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  margin-top: 2rem;
 }
 
 .repo_desc {
