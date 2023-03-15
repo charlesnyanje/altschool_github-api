@@ -86,7 +86,7 @@ const searchRepos = async () => {
 
       <div class="repo" v-for="repo in currentRepos" :key="repo.id">
         <div class="repo__name">
-          <img :src="repo.owner.avatar_url" alt="" />
+          
           <a :href="repo.html_url" target="_blank">{{ repo.name }}</a>
           <p class="repo_desc">{{ repo.description }}</p>
         </div>
@@ -132,6 +132,8 @@ const searchRepos = async () => {
   width: 100%;
   margin-top: 2rem;
 }
+
+
 
 .repo_desc {
   font-size: 0.8rem;
