@@ -1,9 +1,9 @@
 <script setup>
-import TheWelcome from "../components/TheWelcome.vue";
+import FetchApi from "../components/FetchApi.vue";
 </script>
 
 <template>
   <main>
-    <TheWelcome />
+    <FetchApi />
   </main>
 </template>
