@@ -9,6 +9,7 @@ const fetchRepos = async () => {
     "https://api.github.com/users/charlesnyanje/repos"
   );
   repos.value = data;
+  //console.log(repos.value);
 };
 
 fetchRepos();
@@ -80,11 +81,13 @@ const searchRepos = async () => {
 
       <div class="repo" v-for="repo in currentRepos" :key="repo.id">
         <div class="repo__name">
-          <RouterLink :to="`/repos/${repo.name}`">{{ repo.name }}</RouterLink>
-
+          <RouterLink :to="`/repo/:id${repo.id}`">
+            {{ repo.name }}
+          </RouterLink>
+          
           <RouterView />
-
-          <!--<a :href="repo.html_url" target="_blank">{{ repo.name }}</a>-->
+          <br />
+          
 
           <p class="repo_desc">{{ repo.description }}</p>
         </div>
@@ -119,14 +122,14 @@ input {
   margin-top: 1rem;
   box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.1);
 }
-.search{
+.search {
   width: 5rem;
-  
+
   outline: none;
   border-radius: 5px;
   padding: 0.5rem;
   margin-top: 1rem;
- 
+
   cursor: pointer;
 }
 .container {
@@ -138,6 +141,7 @@ input {
   background-color: rgb(241, 237, 237);
   height: 60vh;
   width: 50vw;
+  border-radius: 10px;
 }
 
 .git__user {

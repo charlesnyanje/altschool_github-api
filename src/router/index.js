@@ -27,9 +27,11 @@ const router = createRouter({
 
       children: [
         {
-          path: "/repos/repo.name",
+          
+          path: "/repo/:id",
           name: "repo-details",
-          component: () => import("../views/RepoDetails.vue"),
+          component: RepoDetails,
+
         },
       ],
 

@@ -3,13 +3,12 @@ import { RouterLink, RouterView } from "vue-router";
 </script>
 
 <template>
-  <header >
+  <header>
     <nav>
       <RouterLink to="/" class="link">Home</RouterLink>
       <RouterLink to="/about" class="link">About</RouterLink>
       <RouterLink to="/repos" class="link">Repos</RouterLink>
-     
-
+      <RouterLink to="/repo/:id" class="link">Repo</RouterLink>
     </nav>
   </header>
 
@@ -17,17 +16,15 @@ import { RouterLink, RouterView } from "vue-router";
 </template>
 
 <style>
-body{
- background-color: aqua;
-
+body {
+  background-color: aqua;
 }
 header {
   line-height: 1.5;
   max-height: 100vh;
-
 }
 
-.link{
+.link {
   color: black;
   text-decoration: none;
   font-size: 1.5rem;
@@ -37,8 +34,6 @@ header {
   padding: 1rem;
   transition: all 0.3s ease-in-out;
 }
-
-
 
 .logo {
   display: block;
