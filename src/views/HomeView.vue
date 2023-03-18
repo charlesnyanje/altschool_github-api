@@ -1,11 +1,15 @@
 <script setup>
-import RepoDetails from './RepoDetails.vue';
 
 </script>
 
 <template>
-  <main>
-    <RepoDetails />
+  <div class="about__container">
+
+    <p>
+
+      Hello there,welcome to my first vue application.Kindly navigate to the repos route to see the list of repositories <br/>  for any queries that you may have contact me through: charleswilliam26@gmail.com
+    </p>
     
-  </main>
+    
+  </div>
 </template>

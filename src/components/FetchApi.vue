@@ -11,13 +11,10 @@ const fetchRepos = async () => {
   repos.value = data;
   //console.log(repos.value);
 };
-
 fetchRepos();
-
 //creating a pagination of repos
-
 const currentPage = ref(1);
-const reposPerPage = ref(1);
+const reposPerPage = ref(6);
 const indexOfLastRepo = ref(currentPage.value * reposPerPage.value);
 const indexOfFirstRepo = ref(indexOfLastRepo.value - reposPerPage.value);
 const currentRepos = ref(
@@ -32,7 +29,6 @@ const paginate = (pageNumber) => {
     indexOfLastRepo.value
   );
 };
-
 const next = () => {
   if (currentPage.value < Math.ceil(repos.value.length / reposPerPage.value)) {
     currentPage.value++;
@@ -44,7 +40,6 @@ const next = () => {
     );
   }
 };
-
 const prev = () => {
   if (currentPage.value > 1) {
     currentPage.value--;
@@ -56,9 +51,7 @@ const prev = () => {
     );
   }
 };
-
 //searching a github user
-
 const search = ref("");
 const searchRepos = async () => {
   const { data } = await axios.get(
@@ -76,18 +69,18 @@ const searchRepos = async () => {
       <button class="search" @click="searchRepos">Search</button>
       <br />
     </div>
+    <div class="git__user">
+      <h1>My Github Repos</h1>
+    </div>
     <div class="repos">
-      <h1>My Repos</h1>
-
       <div class="repo" v-for="repo in currentRepos" :key="repo.id">
         <div class="repo__name">
-          <RouterLink :to="`/repo/:id${repo.id}`">
+          <RouterLink :to="`/:repoName${repo.name}`">
             {{ repo.name }}
           </RouterLink>
-          
+
           <RouterView />
           <br />
-          
 
           <p class="repo_desc">{{ repo.description }}</p>
         </div>
@@ -110,8 +103,7 @@ const searchRepos = async () => {
     </div>
   </div>
 </template>
-
-<style>
+<style scoped>
 input {
   width: 20rem;
   height: 2rem;
@@ -120,7 +112,7 @@ input {
   border-radius: 5px;
   padding: 0.5rem;
   margin-top: 1rem;
-  box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.26);
 }
 .search {
   width: 5rem;
@@ -138,9 +130,9 @@ input {
   align-items: center;
   justify-content: center;
   margin: 3rem auto;
-  background-color: rgb(241, 237, 237);
-  height: 60vh;
-  width: 50vw;
+  box-shadow: 0px 2px 6px 8px rgba(0, 0, 0, 0.26);
+  width: 80vw;
+
   border-radius: 10px;
 }
 
@@ -163,23 +155,22 @@ input {
 }
 
 .repos {
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(20rem, 1fr));
   align-items: center;
+  gap: 1rem;
   justify-content: center;
-  width: 100%;
+  width: 60vw;
   margin-top: 2rem;
 }
 
 .repo {
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: 60vw;
   margin-top: 2rem;
   padding: 1rem;
-  border: 1px solid #ccc;
+  box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.26);
   border-radius: 5px;
 }
 
@@ -187,6 +178,7 @@ input {
   font-size: 1.5rem;
   font-weight: 700;
   margin-bottom: 1rem;
+  width: 20vw;
 }
 
 .repo__description {
@@ -211,6 +203,7 @@ input {
   justify-content: center;
   margin-top: 2rem;
   gap: 4rem;
+  margin-bottom: 2rem;
 }
 
 button {
@@ -251,10 +244,13 @@ button {
   }
 
   .repo {
-    width: 80vw;
+    width: 50vw;
     display: flex;
     overflow-wrap: break-word;
     word-break: break-all;
+    align-items: center;
+    justify-content: center;
+    margin: 2rem auto;
   }
 }
 

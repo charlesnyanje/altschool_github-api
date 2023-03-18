@@ -24,18 +24,12 @@ const router = createRouter({
       path: "/repos",
       name: "repo",
       component: RepoView,
+    },
 
-      children: [
-        {
-          
-          path: "/repo/:id",
-          name: "repo-details",
-          component: RepoDetails,
-
-        },
-      ],
-
-
+    {
+      path: "/:repoName",
+      name: "repo-details",
+      component: RepoDetails,
     },
 
     {

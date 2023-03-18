@@ -1,37 +1,67 @@
 <script setup>
 import { RouterLink, RouterView } from "vue-router";
+
+
+
 </script>
 
 <template>
-  <header>
-    <nav>
-      <RouterLink to="/" class="link">Home</RouterLink>
-      <RouterLink to="/about" class="link">About</RouterLink>
-      <RouterLink to="/repos" class="link">Repos</RouterLink>
-      <RouterLink to="/repo/:id" class="link">Repo</RouterLink>
-    </nav>
-  </header>
+  <div class="container">
+    <header>
+      <nav>
+        <RouterLink to="/" class="link">Home</RouterLink>
+        <RouterLink to="/about" class="link">About</RouterLink>
+        <RouterLink to="/repos" class="link">Repos</RouterLink>
+      </nav>
+    </header>
 
-  <RouterView />
+    <RouterView />
+  </div>
 </template>
 
 <style>
 body {
-  background-color: aqua;
-}
-header {
+  overflow: auto;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: "Inter", sans-serif;
+  font-size: 16px;
   line-height: 1.5;
-  max-height: 100vh;
+  color: var(--color-text);
+  background-color: var(--color-background);
+  --section-gap: 2rem;
+  --color-text: #333;
+  --color-background: #fff;
+  --color-border: #ddd;
+  --color-link: #007bff;
+  --color-link-hover: #0056b3;
+  --color-link-focus: #0056b3;
+  --color-link-active: #0056b3;
+}
+nav {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 0 1rem;
+  top: 0;
+  left: 0;
+}
+
+.container {
+  width: 100vw;
+  padding: 0;
+  margin: 0;
 }
 
 .link {
-  color: black;
+  color: gray;
   text-decoration: none;
   font-size: 1.5rem;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.1rem;
-  padding: 1rem;
+
   transition: all 0.3s ease-in-out;
 }
 
