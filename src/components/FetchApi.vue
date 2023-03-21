@@ -75,7 +75,12 @@ const searchRepos = async () => {
     <div class="repos">
       <div class="repo" v-for="repo in currentRepos" :key="repo.id">
         <div class="repo__name">
-          <RouterLink :to="`/:repoName${repo.name}`">
+          <RouterLink
+            :to="{
+              name: 'RepoDetails',
+              params: { id: repo.id },
+            }"
+          >
             {{ repo.name }}
           </RouterLink>
 

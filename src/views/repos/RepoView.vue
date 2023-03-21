@@ -1,5 +1,5 @@
 <script setup>
-import FetchApi from "../components/FetchApi.vue";
+import FetchApi from "../../components/FetchApi.vue";
 </script>
 
 <template>

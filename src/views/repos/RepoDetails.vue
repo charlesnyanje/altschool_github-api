@@ -3,7 +3,7 @@
 import { RouterLink, RouterView } from "vue-router";
 import axios from "axios";
 import { ref } from "vue";
-import FetchApi from "../components/FetchApi.vue";
+import FetchApi from "../../components/FetchApi.vue";
 import { useRouter } from "vue-router";
 const router = useRouter();
 const repos = ref([]);
@@ -24,18 +24,18 @@ const getShortList = (num) => {
   <!--display a single repo-->
 
   <div class="repo-details">
-  
-  <div class="repo" v-for="(repo, id) in getShortList(1)" :key="repo.id">
+    <div v-for="(repo, id) in repos" :key="repo.id">
+      <div v-if="repo.id == router.currentRoute.value.params.id">
+        <h2 class="repo-name">{{ repo.name }}</h2>
+        <!--external link to github based on id-->
 
-    
-    
-      <h1 class="repo-name">{{ repo.name }}</h1>
-
-      <!--external link to github-->
-
-      <a :href="repo.html_url" target="_blank" rel="noopener noreferrer" class="link-btn">
-        <button class="btn">View Repo</button>
-      </a>
+        <div class="link-btn">
+          <a :href="repo.html_url" target="_blank" rel="noopener noreferrer">
+            <button class="btn">View Repo</button>
+          </a>
+        </div>
+       
+      </div>
     </div>
   </div>
 </template>
@@ -54,7 +54,6 @@ const getShortList = (num) => {
   border: 1px solid #ccc;
 }
 
-
 .repo-name {
   font-size: 2rem;
   font-weight: 600;
@@ -67,6 +66,6 @@ const getShortList = (num) => {
   flex-direction: column;
   margin: 2rem auto;
   box-shadow: 0px 2px 6px 8px rgba(0, 0, 0, 0.26);
-  width:80vw;
+  width: 80vw;
 }
 </style>
